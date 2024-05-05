@@ -1,12 +1,12 @@
 <div class="row mb-4">
   <div class="col">
     <h2>
-      Task "<%= @task.title %>"
+      Task "<%= @load_task.title %>"
     </h2>
   </div>
 
   <div class="col-sm-auto">
-    <%= link_to 'Edit', [:edit, @task], class: 'btn btn-primary', 'up-target': '.task' %>
+    <%= link_to 'Edit', [:edit, @load_task], class: 'btn btn-primary', 'up-target': '.task' %>
     <%= link_to 'Delete', @project, method: :delete, 'up-follow': '', 'up-confirm' => 'Really delete?', class: 'btn btn-danger mr-3', 'up-target': '.task' %>
   </div>
 </div>
@@ -14,18 +14,18 @@
 <dl class="my-8">
   <dt>Text</dt>
   <p style="white-space: pre-line;">
-    <%= @task.text %>
+    <%= @load_task.text %>
   </p>
   <dt>Type</dt>
   <p>
-    <%= @task.types %>
+    <%= @load_task.types %>
   </p>
   <dt>Points</dt>
   <p>
-    <%= @task.points %>
+    <%= @load_task.points %>
   </p>
   <dt>Due date</dt>
   <p>
-    <%= @task.due_date %> 
+    <%= @load_task.due_date %> 
   </p>
 </dl>

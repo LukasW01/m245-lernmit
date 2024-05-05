@@ -8,7 +8,5 @@ class TenantsController < ApplicationController
     else
       render text: 'This demo requires cookies'
     end
-
   end
-
 end

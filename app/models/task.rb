@@ -4,7 +4,7 @@ class Task < ApplicationRecord
   validates :title, :text, :types, :due_date, :points, presence: true
   validates :points, numericality: { only_integer: true, greater_than: 0 }
   validates :types, inclusion: { in: %w[Task Exam] }
-  validates :due_date, date: { after: Proc.new { Date.today }, message: 'must be in the future' }
+  validates :due_date, date: { after: proc { Date.today }, message: 'must be in the future' }
 
   scope :done, -> { where(done: true) }
 
@@ -17,5 +17,4 @@ class Task < ApplicationRecord
   def self.clear_done!
     where(done: true).destroy_all
   end
-
 end

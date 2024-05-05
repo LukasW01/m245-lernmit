@@ -1,7 +1,4 @@
-require 'github/markup'
-
 class TasksController < ApplicationController
-
   def new
     build_task
   end
@@ -29,13 +26,13 @@ class TasksController < ApplicationController
   def index
     load_tasks
   end
-  
+
   def destroy
     load_task
-    if @task.destroy
+    if @load_task.destroy
       redirect_to tasks_path
     else
-      redirect_to @task, alert: 'Could not delete task'
+      redirect_to @load_task, alert: 'Could not delete task'
     end
   end
 
@@ -46,14 +43,14 @@ class TasksController < ApplicationController
 
   def toggle_done
     load_task
-    @task.toggle_done!
-    redirect_to @task
+    @load_task.toggle_done!
+    redirect_to @load_task
   end
 
   private
 
   def load_tasks
-    @tasks ||= task_scope.order(created_at: :desc).to_a
+    @load_tasks ||= task_scope.order(created_at: :desc).to_a
   end
 
   def task_scope
@@ -61,21 +58,21 @@ class TasksController < ApplicationController
   end
 
   def load_task
-    @task ||= task_scope.find(params[:id])
+    @load_task ||= task_scope.find(params[:id])
   end
 
   def build_task
-    @task ||= task_scope.build
-    @task.attributes = task_attributes
+    @load_task ||= task_scope.build
+    @load_task.attributes = task_attributes
   end
 
-  def save_task(event: nil, form:)
+  def save_task(form:, event: nil)
     if up.validate?
-      @task.valid?
+      @load_task.valid?
       render form
-    elsif @task.save
+    elsif @load_task.save
       up.layer.emit(event) if event
-      redirect_to @task, notice: 'Task saved successfully'
+      redirect_to @load_task, notice: 'Task saved successfully'
     else
       render form, status: :bad_request
     end
@@ -88,5 +85,4 @@ class TasksController < ApplicationController
       {}
     end
   end
-
 end

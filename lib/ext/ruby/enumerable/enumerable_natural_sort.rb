@@ -1,5 +1,4 @@
 module Enumerable
-
   def natural_sort
     natural_sort_by
   end
@@ -11,5 +10,4 @@ module Enumerable
       element.to_sort_atoms
     end
   end
-
 end

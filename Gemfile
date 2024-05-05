@@ -5,7 +5,7 @@ ruby '3.3.0'
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap'
 gem 'bootstrap'
-gem 'coffee-script' 
+gem 'coffee-script'
 gem 'database_cleaner'
 gem 'date_validator', '~> 0.12.0'
 gem 'faker'
@@ -21,17 +21,17 @@ gem 'rails', '~> 7.1.3', '>= 7.1.3.2'
 gem 'redis', '>= 4.0.1'
 gem 'sass-rails'
 gem 'sprockets-rails'
-gem 'sqlite3', '2.0.1'
+gem 'sqlite3', '1.5.0.rc1'
 gem 'stimulus-rails'
 gem 'terser'
 gem 'turbo-rails'
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'unpoly-rails'
 gem 'whenever', require: false
 
 group :development, :test do
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'debug', platforms: %i[ mri windows ] 
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'debug', platforms: %i[mri windows]
 end
 
 group :development do
@@ -46,11 +46,11 @@ group :development do
   gem 'web-console'
 end
 
-group :test do 
+group :test do
   gem 'capybara', '>= 2.15'
-  gem 'selenium-webdriver'
-  gem 'webdrivers', '~> 5.3'
   gem 'rspec', '~> 3.13.0'
   gem 'rspec_junit_formatter', '~> 0.6.0'
   gem 'rubocop', '~> 1.63', '>= 1.63.4'
+  gem 'selenium-webdriver'
+  gem 'webdrivers', '~> 5.3'
 end
