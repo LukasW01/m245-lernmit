@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby '3.3.0'
 
 gem 'bcrypt', '~> 3.1.7'
-gem 'bootsnap', require: false
+gem 'bootsnap'
 gem 'bootstrap'
 gem 'coffee-script' 
 gem 'database_cleaner'
@@ -31,15 +31,14 @@ gem 'whenever', require: false
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'debug', platforms: %i[ mri windows ]
-  gem 'rubocop', require: false
+  gem 'debug', platforms: %i[ mri windows ] 
 end
 
 group :development do
-  gem 'capistrano', '~> 3.10', require: false
-  gem 'capistrano-opscomplete', require: false
-  gem 'capistrano-passenger', require: false
-  gem 'capistrano-rails', '~> 1.3', require: false
+  gem 'capistrano', '~> 3.10'
+  gem 'capistrano-opscomplete'
+  gem 'capistrano-passenger'
+  gem 'capistrano-rails', '~> 1.3'
   gem 'listen', '~> 3.2'
   gem 'rack-mini-profiler'
   gem 'spring'
@@ -50,5 +49,8 @@ end
 group :test do 
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
-  gem 'webdrivers'
+  gem 'webdrivers', '~> 5.3'
+  gem 'rspec', '~> 3.13.0'
+  gem 'rspec_junit_formatter', '~> 0.6.0'
+  gem 'rubocop', '~> 1.63', '>= 1.63.4'
 end

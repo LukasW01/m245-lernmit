@@ -43,3 +43,6 @@
 .idea/
 .vscode/
 
+# Testing & Coverage
+coverage/
+
