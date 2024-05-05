@@ -43,7 +43,7 @@ group :development do
   gem 'listen', '~> 3.2'
   gem 'rack-mini-profiler'
   gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'spring-watcher-listen', '~> 2.1.0'
   gem 'web-console'
 end
 
