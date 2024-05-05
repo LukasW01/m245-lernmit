@@ -378,9 +378,6 @@ GEM
       nokogiri (~> 1.8)
     zeitwerk (2.6.13)
 
-PLATFORMS
-  arm64-darwin
-
 DEPENDENCIES
   bcrypt (~> 3.1.7)
   bootsnap
