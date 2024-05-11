@@ -6,15 +6,15 @@ class Task < ApplicationRecord
   validates :types, inclusion: { in: %w[Task Exam] }
   validates :due_date, date: { after: proc { Date.today }, message: 'must be in the future' }
 
-  scope :done, -> { where(done: true) }
+  scope :status, -> { where(status: true) }
 
-  has_defaults done: false
+  has_defaults status: false
 
-  def toggle_done!
-    update!(done: !done?)
+  def toggle_status!
+    update!(status: !status?)
   end
 
-  def self.clear_done!
-    where(done: true).destroy_all
+  def self.clear_status!
+    where(status: true).destroy_all
   end
 end

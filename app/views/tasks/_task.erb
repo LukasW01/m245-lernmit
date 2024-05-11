@@ -1,7 +1,8 @@
-<%= link_to task_path(task), class: "card task #{'done' if task.done?}", tabindex: "0", 'up-layer': 'new' do %>
+<%= link_to task_path(task), class: "card task #{'status' if task.status == 'completed'}", tabindex: "0", 'up-layer': 'new' do %>
   <div class="card-body d-flex flex-column">
     <div class="card-text flex-grow-1">
       <b><%= task.title %></b>
+      <p><%= truncate(task.text, length: 75) %></p>
     </div>
   </div>
 <% end %>

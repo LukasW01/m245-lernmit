@@ -36,15 +36,24 @@ class TasksController < ApplicationController
     end
   end
 
-  def clear_done
-    task_scope.clear_done!
+  def clear_status
+    task_scope.clear_status!
     redirect_to tasks_path
   end
 
-  def toggle_done
+  def toggle_status
     load_task
-    @load_task.toggle_done!
+    @load_task.toggle_status!
     redirect_to @load_task
+  end
+
+  def filter_status
+    if %w[upcoming completed].include?(params[:filter].to_s)
+      @load_tasks = task_scope.where(status: params[:filter]).to_a
+    elsif params[:filter] == 'past_due'
+      @load_tasks = task_scope.where('due_date < ?', Date.today).where(status: 'upcoming').to_a
+    end
+    render :index
   end
 
   private
@@ -80,7 +89,7 @@ class TasksController < ApplicationController
 
   def task_attributes
     if (attrs = params[:task])
-      attrs.permit(:title, :text, :types, :done, :due_date, :points)
+      attrs.permit(:title, :text, :types, :status, :due_date, :points)
     else
       {}
     end

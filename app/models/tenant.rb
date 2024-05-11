@@ -33,7 +33,7 @@ class Tenant < ApplicationRecord
         types: %w[Task Exam].sample,
         points: (1..6).to_a.sample,
         due_date: rand(100).hours.from_now,
-        done: [true, false].sample,
+        status: %w[upcoming completed].sample,
         created_at: rand(100).hours.ago
       )
     end

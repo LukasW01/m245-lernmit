@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(version: 20_211_201_123_306) do
   create_table 'tasks', force: :cascade do |t|
     t.string 'title'
     t.string 'text'
-    t.boolean 'done'
+    t.string 'status'
     t.string 'types'
     t.datetime 'due_date'
     t.integer 'points'
