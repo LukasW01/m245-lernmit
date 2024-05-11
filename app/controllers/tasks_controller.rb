@@ -27,24 +27,14 @@ class TasksController < ApplicationController
     load_tasks
   end
 
-  def destroy
+  def destroy(event: nil)
     load_task
     if @load_task.destroy
-      redirect_to tasks_path
+      up.layer.emit(event) if event
+      redirect_to @load_task, notice: 'Task deleted successfully'
     else
       redirect_to @load_task, alert: 'Could not delete task'
     end
-  end
-
-  def clear_status
-    task_scope.clear_status!
-    redirect_to tasks_path
-  end
-
-  def toggle_status
-    load_task
-    @load_task.toggle_status!
-    redirect_to @load_task
   end
 
   def filter_status
@@ -68,6 +58,8 @@ class TasksController < ApplicationController
 
   def load_task
     @load_task ||= task_scope.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    render :index, alert: 'Task not found'
   end
 
   def build_task

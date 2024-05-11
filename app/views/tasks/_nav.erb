@@ -1,19 +1,26 @@
-<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+<ul class="nav nav-tabs" id="tab" role="tablist">
   <li class="nav-item" role="presentation">
-    <%= link_to 'Upcoming', status_tasks_path(filter: 'upcoming'), 'up-accept-event': 'task:status', 'up-on-accepted': "up.reload('.tasks')", class: 'nav-link', id: 'pills-home-tab', 'data-bs-toggle': 'pill', 'data-bs-target': '#pills-home', role: 'tab'%>
+    <%= link_to 'Upcoming', status_tasks_path(filter: 'upcoming'), 'up-target': ".container", class: 'nav-link', id: 'pills-home-tab', 'data-bs-toggle': 'pill', 'data-bs-target': '#pills-tab', role: 'tab'%>
   </li>
   <li class="nav-item" role="presentation">
-    <%= link_to 'Past due', status_tasks_path(filter: 'past_due'), 'up-accept-event': 'task:status', 'up-on-accepted': "up.reload('.tasks')", class: 'nav-link', id: 'pills-profile-tab', 'data-bs-toggle': 'pill', 'data-bs-target': '#pills-profile', role: 'tab' %>
+    <%= link_to 'Past due', status_tasks_path(filter: 'past_due'), 'up-target': ".container", class: 'nav-link', id: 'pills-profile-tab', 'data-bs-toggle': 'pill', 'data-bs-target': '#pills-tab', role: 'tab' %>
   </li>
   <li class="nav-item" role="presentation">
-    <%= link_to 'Completed', status_tasks_path(filter: 'completed'), 'up-accept-event': 'task:status', 'up-on-accepted': "up.reload('.tasks')", class: 'nav-link', id: 'pills-contact-tab', 'data-bs-toggle': 'pill', 'data-bs-target': '#pills-contact', role: 'tab' %>
+    <%= link_to 'Completed', status_tasks_path(filter: 'completed'), 'up-target': ".container", class: 'nav-link', id: 'pills-contact-tab', 'data-bs-toggle': 'pill', 'data-bs-target': '#pills-tab', role: 'tab' %>
   </li>
 </ul>
 
+
 <div class="tasks">
   <% if params[:filter].nil? || %w[upcoming completed past_due].include?(params[:filter].to_s) %>
-    <% @load_tasks.each_with_index do |task, i| %>
-      <%= render task %>
+    <% if @load_tasks.present? %>
+      <% @load_tasks&.each_with_index do |task, i| %>
+        <%= render task %>
+      <% end %>
+    <% else %>
+      <div class="alert alert-danger" role="alert">
+        No tasks found
+      </div>
     <% end %>
   <% else %>
     <div class="alert alert-danger" role="alert">
