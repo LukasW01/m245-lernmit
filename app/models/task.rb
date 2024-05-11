@@ -8,13 +8,5 @@ class Task < ApplicationRecord
 
   scope :status, -> { where(status: true) }
 
-  has_defaults status: false
-
-  def toggle_status!
-    update!(status: !status?)
-  end
-
-  def self.clear_status!
-    where(status: true).destroy_all
-  end
+  has_defaults status: 'upcoming'
 end

@@ -19,10 +19,6 @@ class Tenant < ApplicationRecord
     cleanable_tenants.find_each(&:destroy)
   end
 
-  def tenants
-    # code here
-  end
-
   private
 
   def create_sample_records

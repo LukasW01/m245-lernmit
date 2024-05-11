@@ -38,9 +38,9 @@ class TasksController < ApplicationController
   end
 
   def filter_status
-    if %w[upcoming completed].include?(params[:filter].to_s)
-      @load_tasks = task_scope.where(status: params[:filter]).to_a
-    elsif params[:filter] == 'past_due'
+    if %w[upcoming completed].include?(params[:status].to_s)
+      @load_tasks = task_scope.where(status: params[:status]).to_a
+    elsif %w[upcoming].include?(params[:status].to_s)
       @load_tasks = task_scope.where('due_date < ?', Date.today).where(status: 'upcoming').to_a
     end
     render :index
