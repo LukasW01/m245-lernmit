@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       patch :toggle_status
     end
     collection do
-      get 'filter', to: 'tasks#filter_status', as: :filter
+      get 'filter'
     end
   end
 
