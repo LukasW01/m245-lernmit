@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include Clearance::Controller
   include Memoized
 
   before_action :create_missing_tenant
