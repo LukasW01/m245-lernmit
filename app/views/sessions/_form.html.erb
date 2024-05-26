@@ -1,22 +1,25 @@
 <%= form_for :session, url: session_path do |form| %>
-  <div class="text-field">
-    <%= form.label :email %>
-    <%= form.email_field :email %>
-  </div>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content rounded-4 shadow" style="background-color: #131212;">
+      <div class="modal-header p-5 pb-4 border-bottom-0">
+        <h1 class="fw-bold mb-0 fs-2">Sign in</h1>
+      </div>
+      <div class="modal-body p-5 pt-0">
+        <form class="form-floating mb-3">
+          <div class="form-floating mb-3">
+            <%= form.email_field :email, class: 'form-control rounded-3',id: 'floatingInput', placeholder: 'mail@example.com'%>
+            <%= form.label :email, for: "floatingInput" %>
+          </div>
+          <div class="form-floating mb-3">
+            <%= form.password_field :password, class: 'form-control rounded-3', id: 'floatingPassword', placeholder: 'Password' %>
+            <%= form.label :password, for: "floatingPassword" %>
+            <small class="text-body-secondary">Forgot your password? <%= link_to t(".forgot_password"), new_password_path %></small>
 
-  <div class="password-field">
-    <%= form.label :password %>
-    <%= form.password_field :password %>
-  </div>
-
-  <div class="submit-field">
-    <%= form.submit %>
-  </div>
-
-  <div class="other-links">
-    <% if Clearance.configuration.allow_sign_up? %>
-      <%= link_to t(".sign_up"), sign_up_path %>
-    <% end %>
-    <%= link_to t(".forgot_password"), new_password_path %>
+          </div>
+          <%= form.submit "Sign in", class: 'w-100 mb-2 btn btn-lg rounded-3 btn-primary' %>
+          <small class="text-body-secondary">Don't have an account? <%= link_to t(".sign_up"), sign_up_path %></small>
+        </form>
+      </div>
+    </div>
   </div>
 <% end %>

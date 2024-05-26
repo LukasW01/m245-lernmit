@@ -3,6 +3,7 @@
 
 @import 'bootstrap';
 @import 'helpers';
+@import "simple_calendar";
 
 @mixin block-spacing {
   margin-top: spacer(3);

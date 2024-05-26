@@ -42,7 +42,7 @@ class TasksController < ApplicationController
   def filter
     if %w[upcoming completed].include?(params[:status].to_s)
       @load_tasks = task_scope.where(status: params[:status]).to_a
-    elsif %w[upcoming].include?(params[:status].to_s)
+    elsif %w[past_due].include?(params[:status].to_s)
       @load_tasks = task_scope.where('due_date < ?', Time.now).where(status: 'upcoming').to_a
     end
     render :index
@@ -55,7 +55,7 @@ class TasksController < ApplicationController
   end
 
   def task_scope
-    current_tenant.tasks
+    Task.where(user_id: current_user.id)
   end
 
   def load_task

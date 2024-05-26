@@ -1,5 +1,5 @@
 class Task < ApplicationRecord
-  belongs_to :tenant
+  belongs_to :user
 
   validates :title, :text, :types, :due_date, :points, presence: true
   validates :points, numericality: { only_integer: true, greater_than: 0 }

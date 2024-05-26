@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :tasks
   root to: 'pages#home'
 
   resources :tasks do
@@ -12,6 +13,4 @@ Rails.application.routes.draw do
       get 'filter'
     end
   end
-
-  get 'verify_tenant', to: 'tenants#verify', as: :verify_tenant
 end
