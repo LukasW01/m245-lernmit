@@ -25,22 +25,6 @@ rubocop:
     - bundler exec rubocop
   image: ruby:3.3.0
 
-test:
-  stage: bundle
-  before_script:
-    - ruby -v
-    - bundle config set --local deployment true
-    - bundle install -j $(nproc)
-  script:
-    - bin/rails test
-  artifacts:
-    when: always
-    paths:
-      - coverage/
-    reports:
-      junit: coverage/rspec.xml
-  image: ruby:3.3.0
-
 rspec:
   stage: bundle
   before_script:
