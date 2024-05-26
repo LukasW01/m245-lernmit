@@ -32,7 +32,7 @@ test:
     - bundle config set --local deployment true
     - bundle install -j $(nproc)
   script:
-    - rails test
+    - bin/rails test
   artifacts:
     when: always
     paths:
