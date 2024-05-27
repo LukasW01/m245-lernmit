@@ -1,39 +1,185 @@
-<div class="simple-calendar">
-  <div class="calendar-heading">
-    <span class="calendar-title">
+<div class="flex h-full flex-col week">
+  <header class="flex flex-none items-center justify-between border-b border-gray-200 px-6 py-4">
+    <h1 class="text-base font-semibold leading-6 text-white">
       <%= t('simple_calendar.week', default: 'Week') %>
       <%= calendar.week_number %>
       <% if calendar.number_of_weeks > 1 %>
         - <%= calendar.end_week %>
       <% end %>
-    </span>
-
-    <nav>
-      <%= link_to t('simple_calendar.previous', default: 'Previous'), calendar.url_for_previous_view, 'up-target': ".simple-calendar" %>
-      <%= link_to t('simple_calendar.today', default: 'Today'), calendar.url_for_today_view, 'up-target': ".simple-calendar" %>
-      <%= link_to t('simple_calendar.next', default: 'Next'), calendar.url_for_next_view, 'up-target': ".simple-calendar" %>
-    </nav>
-  </div>
-
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <% date_range.slice(0, 7).each do |day| %>
-          <th><%= t('date.abbr_day_names')[day.wday] %></th>
+    </h1>
+    <div class="flex items-center">
+      <div class="relative flex items-center rounded-md bg-white shadow-sm md:items-stretch">
+        <%= link_to calendar.url_for_previous_view, 'up-target': ".week", class: "flex h-9 w-12 items-center justify-center rounded-l-md border-y border-l border-gray-300 pr-1 text-gray-400 hover:text-gray-500 focus:relative md:w-9 md:pr-0 md:hover:bg-gray-50" do %>
+          <span class="sr-only">Previous week</span>
+          <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clip-rule="evenodd" />
+          </svg>
         <% end %>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% date_range.each_slice(7) do |week| %>
-        <tr>
-          <% week.each do |day| %>
-            <%= content_tag :td, class: calendar.td_classes_for(day) do %>
-              <% instance_exec(day, calendar.sorted_events_for(day), &passed_block) %>
-            <% end %>
+        <%= link_to t('simple_calendar.today', default: 'Today'), calendar.url_for_today_view, 'up-target': ".calendar", class: "hidden border-y border-gray-300 px-3.5 text-sm font-semibold text-gray-900 hover:bg-gray-50 focus:relative md:block" %>
+        <span class="relative -mx-px h-5 w-px bg-gray-300 md:hidden"></span>
+        <%= link_to calendar.url_for_next_view, 'up-target': ".week", class: "flex h-9 w-12 items-center justify-center rounded-r-md border-y border-r border-gray-300 pl-1 text-gray-400 hover:text-gray-500 focus:relative md:w-9 md:pl-0 md:hover:bg-gray-50" do %>
+          <span class="sr-only">Next week</span>
+          <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
+          </svg>
+        <% end %>
+      </div>
+    </div>
+  </header>
+  <div class="isolate flex flex-auto flex-col overflow-auto bg-white">
+    <div style="width: 165%" class="flex max-w-full flex-none flex-col sm:max-w-none md:max-w-full">
+      <div class="sticky top-0 z-30 flex-none bg-white shadow ring-1 ring-black ring-opacity-5 sm:pr-8">
+        <div class="grid grid-cols-7 text-sm leading-6 text-gray-500 sm:hidden">
+          <% date_range.slice(0, 7).each do |day| %>
+            <button type="button" class="flex flex-col items-center pb-3 pt-2">
+              <%= t('date.abbr_day_names')[day.wday] %>
+              <span class="mt-1 flex h-8 w-8 items-center justify-center font-semibold <%= day == Date.today ? 'rounded-full bg-indigo-600 font-semibold text-white' : 'font-semibold text-gray-900' %>">
+                <%= day.day %>
+              </span>
+            </button>
           <% end %>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+        </div>
+
+        <div class="-mr-px hidden grid-cols-7 divide-x divide-gray-100 border-r border-gray-100 text-sm leading-6 text-gray-500 sm:grid">
+          <div class="col-end-1 w-14"></div>
+          <% date_range.slice(0, 7).each do |day| %>
+            <div class="flex items center justify-center py-3">
+              <span><%= t('date.abbr_day_names')[day.wday] %>
+                <span class="items-center justify-center font-semibold <%= day == Date.today ? 'inline-flex ml-1.5 h-8 w-8 rounded-full bg-indigo-600 font-semibold text-white' : 'inline-flex ml-1.5 h-8 w-8 rounded-full bg-white font-semibold text-gray-900' %>">
+                  <%= day.day %>
+                </span>
+              </span>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="flex flex-auto">
+        <div class="sticky left-0 z-10 w-14 flex-none bg-white ring-1 ring-gray-100"></div>
+        <div class="grid flex-auto grid-cols-1 grid-rows-1">
+          <!-- Horizontal lines -->
+          <div class="col-start-1 col-end-2 row-start-1 grid divide-y divide-gray-100" style="grid-template-rows: repeat(48, minmax(3.5rem, 1fr))">
+            <div class="row-end-1 h-7"></div>
+            <div>
+              <div class="sticky left-0 z-20 -ml-14 -mt-2.5 w-14 pr-2 text-right text-xs leading-5 text-gray-400">12AM</div>
+            </div>
+            <div></div>
+            <div>
+              <div class="sticky left-0 z-20 -ml-14 -mt-2.5 w-14 pr-2 text-right text-xs leading-5 text-gray-400">1AM</div>
+            </div>
+            <div></div>
+            <div>
+              <div class="sticky left-0 z-20 -ml-14 -mt-2.5 w-14 pr-2 text-right text-xs leading-5 text-gray-400">2AM</div>
+            </div>
+            <div></div>
+            <div>
+              <div class="sticky left-0 z-20 -ml-14 -mt-2.5 w-14 pr-2 text-right text-xs leading-5 text-gray-400">3AM</div>
+            </div>
+            <div></div>
+            <div>
+              <div class="sticky left-0 z-20 -ml-14 -mt-2.5 w-14 pr-2 text-right text-xs leading-5 text-gray-400">4AM</div>
+            </div>
+            <div></div>
+            <div>
+              <div class="sticky left-0 z-20 -ml-14 -mt-2.5 w-14 pr-2 text-right text-xs leading-5 text-gray-400">5AM</div>
+            </div>
+            <div></div>
+            <div>
+              <div class="sticky left-0 z-20 -ml-14 -mt-2.5 w-14 pr-2 text-right text-xs leading-5 text-gray-400">6AM</div>
+            </div>
+            <div></div>
+            <div>
+              <div class="sticky left-0 z-20 -ml-14 -mt-2.5 w-14 pr-2 text-right text-xs leading-5 text-gray-400">7AM</div>
+            </div>
+            <div></div>
+            <div>
+              <div class="sticky left-0 z-20 -ml-14 -mt-2.5 w-14 pr-2 text-right text-xs leading-5 text-gray-400">8AM</div>
+            </div>
+            <div></div>
+            <div>
+              <div class="sticky left-0 z-20 -ml-14 -mt-2.5 w-14 pr-2 text-right text-xs leading-5 text-gray-400">9AM</div>
+            </div>
+            <div></div>
+            <div>
+              <div class="sticky left-0 z-20 -ml-14 -mt-2.5 w-14 pr-2 text-right text-xs leading-5 text-gray-400">10AM</div>
+            </div>
+            <div></div>
+            <div>
+              <div class="sticky left-0 z-20 -ml-14 -mt-2.5 w-14 pr-2 text-right text-xs leading-5 text-gray-400">11AM</div>
+            </div>
+            <div></div>
+            <div>
+              <div class="sticky left-0 z-20 -ml-14 -mt-2.5 w-14 pr-2 text-right text-xs leading-5 text-gray-400">12PM</div>
+            </div>
+            <div></div>
+            <div>
+              <div class="sticky left-0 z-20 -ml-14 -mt-2.5 w-14 pr-2 text-right text-xs leading-5 text-gray-400">1PM</div>
+            </div>
+            <div></div>
+            <div>
+              <div class="sticky left-0 z-20 -ml-14 -mt-2.5 w-14 pr-2 text-right text-xs leading-5 text-gray-400">2PM</div>
+            </div>
+            <div></div>
+            <div>
+              <div class="sticky left-0 z-20 -ml-14 -mt-2.5 w-14 pr-2 text-right text-xs leading-5 text-gray-400">3PM</div>
+            </div>
+            <div></div>
+            <div>
+              <div class="sticky left-0 z-20 -ml-14 -mt-2.5 w-14 pr-2 text-right text-xs leading-5 text-gray-400">4PM</div>
+            </div>
+            <div></div>
+            <div>
+              <div class="sticky left-0 z-20 -ml-14 -mt-2.5 w-14 pr-2 text-right text-xs leading-5 text-gray-400">5PM</div>
+            </div>
+            <div></div>
+            <div>
+              <div class="sticky left-0 z-20 -ml-14 -mt-2.5 w-14 pr-2 text-right text-xs leading-5 text-gray-400">6PM</div>
+            </div>
+            <div></div>
+            <div>
+              <div class="sticky left-0 z-20 -ml-14 -mt-2.5 w-14 pr-2 text-right text-xs leading-5 text-gray-400">7PM</div>
+            </div>
+            <div></div>
+            <div>
+              <div class="sticky left-0 z-20 -ml-14 -mt-2.5 w-14 pr-2 text-right text-xs leading-5 text-gray-400">8PM</div>
+            </div>
+            <div></div>
+            <div>
+              <div class="sticky left-0 z-20 -ml-14 -mt-2.5 w-14 pr-2 text-right text-xs leading-5 text-gray-400">9PM</div>
+            </div>
+            <div></div>
+            <div>
+              <div class="sticky left-0 z-20 -ml-14 -mt-2.5 w-14 pr-2 text-right text-xs leading-5 text-gray-400">10PM</div>
+            </div>
+            <div></div>
+            <div>
+              <div class="sticky left-0 z-20 -ml-14 -mt-2.5 w-14 pr-2 text-right text-xs leading-5 text-gray-400">11PM</div>
+            </div>
+            <div></div>
+          </div>
+
+          <!-- Vertical lines -->
+          <div class="col-start-1 col-end-2 row-start-1 hidden grid-cols-7 grid-rows-1 divide-x divide-gray-100 sm:grid sm:grid-cols-7">
+            <div class="col-start-1 row-span-full"></div>
+            <div class="col-start-2 row-span-full"></div>
+            <div class="col-start-3 row-span-full"></div>
+            <div class="col-start-4 row-span-full"></div>
+            <div class="col-start-5 row-span-full"></div>
+            <div class="col-start-6 row-span-full"></div>
+            <div class="col-start-7 row-span-full"></div>
+            <div class="col-start-8 row-span-full w-8"></div>
+          </div>
+
+          <!-- Events -->
+          <ol class="col-start-1 col-end-2 row-start-1 grid grid-cols-1 sm:grid-cols-7 sm:pr-8" style="grid-template-rows: 1.75rem repeat(288, minmax(0, 1fr)) auto">
+            <li class="relative mt-px flex sm:col-start-3" style="grid-row: 92 / span 30">
+              <a href="#" class="group absolute inset-1 flex flex-col overflow-y-auto rounded-lg bg-pink-50 p-2 text-xs leading-5 hover:bg-pink-100">
+                <p class="order-1 font-semibold text-pink-700">M245</p>
+                <p class="text-pink-500 group-hover:text-pink-700"><time datetime="2022-01-12T07:30">7:30 AM</time></p>
+              </a>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

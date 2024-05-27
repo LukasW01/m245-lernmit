@@ -1,0 +1,11 @@
+<div class="lg:block hidden">
+  <%= month_calendar do |date| %>
+    <%= date %>
+  <% end %>
+</div>
+
+<div class="lg:hidden">
+  <%= week_calendar(number_of_weeks: 1) do |date| %>
+    <%= date %>
+  <% end %>
+</div>
