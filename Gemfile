@@ -53,7 +53,7 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'rspec', '~> 3.13.0'
   gem 'rspec_junit_formatter', '~> 0.6.0'
-  gem 'rubocop', '~> 1.63'
+  gem 'rubocop', '~> 1.64'
   gem 'selenium-webdriver'
   gem 'webdrivers', '~> 5.3'
 end
