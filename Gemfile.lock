@@ -150,6 +150,7 @@ GEM
       irb (~> 1.10)
       reline (>= 0.3.8)
     diff-lcs (1.5.1)
+    domain_name (0.6.20240107)
     drb (2.2.1)
     email_validator (2.2.4)
       activemodel
@@ -166,6 +167,9 @@ GEM
       activesupport (>= 6.1)
     has_defaults (1.2.0)
       activerecord
+    http-accept (1.7.0)
+    http-cookie (1.0.5)
+      domain_name (~> 0.5)
     i18n (1.14.5)
       concurrent-ruby (~> 1.0)
     image_processing (1.12.2)
@@ -199,9 +203,14 @@ GEM
       net-imap
       net-pop
       net-smtp
+    mailgun-ruby (1.2.14)
+      rest-client (>= 2.0.2)
     marcel (1.0.4)
     matrix (0.4.2)
     memoized (1.1.1)
+    mime-types (3.5.2)
+      mime-types-data (~> 3.2015)
+    mime-types-data (3.2024.0206)
     mini_magick (4.12.0)
     mini_mime (1.1.5)
     mini_portile2 (2.8.6)
@@ -222,6 +231,7 @@ GEM
     net-smtp (0.5.0)
       net-protocol
     net-ssh (7.2.3)
+    netrc (0.11.0)
     nio4r (2.7.3)
     nokogiri (1.16.5-arm64-darwin)
       racc (~> 1.4)
@@ -292,6 +302,11 @@ GEM
     regexp_parser (2.9.2)
     reline (0.5.7)
       io-console (~> 0.5)
+    rest-client (2.1.0)
+      http-accept (>= 1.7.0, < 2.0)
+      http-cookie (>= 1.0.2, < 2.0)
+      mime-types (>= 1.16, < 4.0)
+      netrc (~> 0.8)
     rexml (3.2.8)
       strscan (>= 3.0.9)
     rspec (3.13.0)
@@ -433,6 +448,7 @@ DEPENDENCIES
   jbuilder
   kredis
   listen (~> 3.2)
+  mailgun-ruby (~> 1.2.14)
   pg
   puma (>= 5.0)
   rack-mini-profiler

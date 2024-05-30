@@ -6,6 +6,14 @@ Rails.application.configure do
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
 
+  config.action_mailer.delivery_method = :mailgun
+  config.action_mailer.mailgun_settings = {
+    api_key: ENV.fetch('MAILGUN_API_KEY', nil),
+    domain: ENV.fetch('MAILGUN_DOMAIN', nil),
+    api_host: ENV.fetch('MAILGUN_API_HOST', 'api.eu.mailgun.net'),
+    timeout: 20
+  }
+
   # Do not eager load code on boot.
   config.eager_load = false
 
