@@ -17,7 +17,7 @@ Rails.application.configure do
     api_host: ENV.fetch('MAILGUN_API_HOST', 'api.eu.mailgun.net'),
     timeout: 20
   }
-  
+
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true

@@ -21,7 +21,7 @@ Rails.application.configure do
     api_host: ENV.fetch('MAILGUN_API_HOST', 'api.eu.mailgun.net'),
     timeout: 20
   }
-  
+
   # Configure public file server for tests with Cache-Control for performance.
   config.public_file_server.enabled = true
   config.public_file_server.headers = {

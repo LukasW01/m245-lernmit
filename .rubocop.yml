@@ -12,6 +12,9 @@ Style/FrozenStringLiteralComment:
 Metrics/AbcSize:
   Max: 30
 
+Metrics/BlockLength:
+  Max: 75
+
 Metrics/MethodLength:
   Max: 30
 
