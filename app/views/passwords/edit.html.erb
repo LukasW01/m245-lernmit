@@ -1,18 +1,22 @@
-<div id="clearance" class="password-reset">
-  <h2><%= t(".title") %></h2>
-
-  <p><%= t(".description") %></p>
-
-  <%= form_for :password_reset,
-        url: [@user, :password, token: @user.confirmation_token],
-        html: { method: :put } do |form| %>
-    <div class="password-field">
-      <%= form.label :password %>
-      <%= form.password_field :password %>
+<div id="clearance" class="auth">
+  <div class="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
+    <div class="sm:mx-auto sm:w-full sm:max-w-md">
+      <h2 class="mt-6 text-center text-2xl font-bold leading-9 tracking-tight dark:text-gray-100"><%= t(".title") %></h2>
+      <p class="mt-2 text-center text-sm text-gray-600 dark:text-gray-400 max-w"><%= t(".description") %></div>
+    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
+      <div class="bg-white dark:bg-gray-800 px-6 py-12 shadow sm:rounded-lg pt-6 pb-12 pl-12 pr-12">
+        <%= form_for :password_reset, url: [@user, :password, token: @user.confirmation_token], html: { method: :put }, html: { class: "space-y-6" } do |form| %>
+          <div>
+            <%= form.label :password, class: 'block text-sm font-medium leading-6 text-gray-700 dark:text-gray-300', for: 'email' do %>Password<% end %>
+            <div class="mt-2">
+              <%= form.email_field :password, class: 'dark:bg-gray-900 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 dark:border-gray-500 rounded-md dark:text-gray-300', id: 'email', placeholder: 'mail@example.com' %>
+            </div>
+          </div>
+          <div>
+            <%= form.submit "Password Reset →", class: 'flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600' %>
+          </div>
+        <% end %>
+      </div>
     </div>
-
-    <div class="submit-field">
-      <%= form.submit %>
-    </div>
-  <% end %>
+  </div>
 </div>

@@ -1,11 +1,14 @@
+<% case params[:view] %>
+<% when 'week' %>
+<%= week_calendar(number_of_weeks: 1) { |date| date } %>
+<% when 'month' %>
+<%= month_calendar { |date| date } %>
+<% else %>
 <div class="lg:block hidden">
-  <%= month_calendar do |date| %>
-    <%= date %>
-  <% end %>
+  <%= month_calendar { |date| date } %>
 </div>
 
 <div class="lg:hidden">
-  <%= week_calendar(number_of_weeks: 1) do |date| %>
-    <%= date %>
-  <% end %>
+  <%= week_calendar(number_of_weeks: 1) { |date| date } %>
 </div>
+<% end %>

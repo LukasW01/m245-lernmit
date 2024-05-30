@@ -1,22 +1,64 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-  <div class="navbar-nav">
-    <%= link_to 'Lern Mit', root_path, class: 'navbar-brand', 'up-follow': '' %>
-    <%= link_to 'Tasks', tasks_path, class: 'nav-item nav-link', 'up-follow': '', 'up-alias' => task_path('*') %>
-    <%= link_to 'Calendar', calender_index_url, class: 'nav-item nav-link', 'up-follow': '' %>
-    <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        Themen
-      </a>
-      <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">Mathe</a></li>
-        <li><a class="dropdown-item" href="#">English</a></li>
-        <li><a class="dropdown-item" href="#">Bio</a></li>
-      </ul>
-    </li>
+<div x-data="{ dropdown: false }" class="sticky top-0 z-40 w-full backdrop-blur flex-none transition-colors duration-500 lg:z-50 lg:border-b lg:border-slate-900/10 dark:border-slate-50/[0.06] bg-white supports-backdrop-blur:bg-white/95 dark:bg-slate-900/75">
+  <div class="max-w-8xl mx-auto">
+    <div class="py-4 border-b border-slate-900/10 lg:px-8 lg:border-0 dark:border-slate-300/10 mx-4 lg:mx-0">
+      <div class="relative flex items-center">
+        <%= link_to root_path, { class: 'mr-3 flex-none w-[2.0625rem] overflow-hidden md:w-auto', 'up-follow': '' } do %>
+          <span class="sr-only">Lern Mit</span>
+          <%= image_tag("logo-lernmit.png", alt: "lernmit", :class => 'w-auto h-6') %>
+        <% end %>
+        <!--
+        <div class="ml-3 text-xs leading-5 font-medium text-sky-600 dark:text-sky-400 bg-sky-400/10 rounded-full py-1 px-3 hidden xl:flex items-center hover:bg-sky-400/20">
+          <span class="ml-2">A learning platform with superpowers</span>
+          <svg width="2" height="2" fill="currentColor" aria-hidden="true" class="ml-2 text-sky-600 dark:text-sky-400/70">
+            <circle cx="1" cy="1" r="1"></circle>
+          </svg>
+        </div>
+         -->
+        <div class="relative hidden lg:flex items-center ml-auto">
+          <nav class="text-sm leading-6 font-semibold text-slate-700 dark:text-slate-200">
+            <ul class="flex space-x-8">
+              <li><%= link_to 'Tasks', tasks_path, class: 'hover:text-sky-500 dark:hover:text-sky-400', 'up-follow': '' %></li>
+              <li><%= link_to 'Calendar', calender_index_url, class: 'hover:text-sky-500 dark:hover:text-sky-400', 'up-follow': '' %></li>
+            </ul>
+          </nav>
+          <div class="flex items-center border-l border-slate-200 ml-6 pl-6 dark:border-slate-800">
+            <% if signed_in? %>
+              <p class="mr-4 text-sm font-medium text-gray-900 dark:text-gray-400">Welcome, you</p>
+            <% else %>
+              <%= link_to link_to t(".sign_in"), sign_in_path, class: 'font-medium mr-4 text-gray-500 hover:text-sky-500 dark:hover:text-sky-400  focus:outline-none focus:text-gray-900 transition duration-150 ease-in-out', 'up-follow': ''%>
+              <%= link_to 'Register', sign_up_path, class: 'py-2.5 px-5 me-2 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:text-sky-500 dark:hover:text-sky-400 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700', 'up-follow': ''%>
+          <% end %>
+          </div>
+        </div>
+        <div class="relative flex items-center">
+          <button @click="dropdown = !dropdown" type="button" class="ml-auto text-slate-500 w-8 h-8 -my-1 flex items-center justify-center hover:text-slate-600 lg:hidden dark:text-slate-400 dark:hover:text-slate-300">
+            <span class="sr-only">Navigation</span>
+            <svg width="24" height="24" fill="none" aria-hidden="true">
+              <path d="M12 6v.01M12 12v.01M12 18v.01M12 7a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm0 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm0 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">Sign up</path>
+            </svg>
+          </button>
+          <div hidden="" style="position:fixed;top:1px;left:1px;width:1px;height:0;padding:0;margin:-1px;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border-width:0;display:none"></div>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="m-0 ml-auto text-info" id="new-version" hidden>
-    A newer version is available!
-    <a href="javascript:location.reload()" class='btn btn-info btn-sm ml-2'>Reload</a>
+  
+  
+  <div x-show="dropdown">
+    <div class="fixed z-50 inset-0 lg:hidden" id="headlessui-dialog-:r7:" role="dialog" tabindex="-1" aria-modal="true" data-headlessui-state="open" data-open="">
+      <div class="fixed inset-0 bg-black/20 backdrop-blur-sm dark:bg-slate-900/80"></div>
+      <div class="fixed top-4 right-4 w-full max-w-xs bg-white rounded-lg shadow-lg p-6 text-base font-semibold text-slate-900 dark:bg-slate-800 dark:text-slate-400 dark:highlight-white/5" id="headlessui-dialog-panel-:ra:" data-headlessui-state="open" data-open="">
+        <button @click="dropdown = !dropdown" type="button" class="absolute top-5 right-5 w-8 h-8 flex items-center justify-center text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300">
+          <span class="sr-only">Close navigation</span>
+          <svg viewBox="0 0 10 10" class="w-2.5 h-2.5 overflow-visible" aria-hidden="true">
+            <path d="M0 0L10 10M10 0L0 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+          </svg>
+        </button>
+        <ul class="space-y-6">
+          <li><%= link_to 'Tasks', tasks_path, class: 'hover:text-sky-500 dark:hover:text-sky-400', 'up-follow': '', 'up-alias' => task_path('*') %></li>
+          <li><%= link_to 'Calendar', calender_index_url, class: 'hover:text-sky-500 dark:hover:text-sky-400', 'up-follow': '' %></li>
+        </ul>
+      </div>
+    </div>
   </div>
-</nav>
+</div>

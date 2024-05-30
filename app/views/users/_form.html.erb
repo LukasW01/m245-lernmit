@@ -1,23 +1,23 @@
-<%= form_for @user do |form| %>
-  <div class="modal-dialog" role="document">
-    <div class="modal-content rounded-4 shadow" style="background-color: #131212;">
-      <div class="modal-header p-5 pb-4 border-bottom-0">
-        <h1 class="fw-bold mb-0 fs-2">Sign up</h1>
-      </div>
-      <div class="modal-body p-5 pt-0">
-        <form class="form-floating mb-3">
-          <div class="form-floating mb-3">
-            <%= form.email_field :email, class: 'form-control rounded-3',id: 'floatingInput', placeholder: 'mail@example.com'%>
-            <%= form.label :email, for: "floatingInput" %>
-          </div>
-          <div class="form-floating mb-3">
-            <%= form.password_field :password, class: 'form-control rounded-3', id: 'floatingPassword', placeholder: 'Password' %>
-            <%= form.label :password, for: "floatingPassword" %>
-          </div>
-          <%= form.submit "Sign up", class: 'w-100 mb-2 btn btn-lg rounded-3 btn-primary' %>
-          <small class="text-body-secondary">Already have an account? <%= link_to t(".sign_in"), sign_in_path %></small>
-        </form>
-      </div>
+<%= form_for @user, html: { class: "space-y-6" } do |form| %>
+  <div>
+    <%= form.label :email, class: 'block text-sm font-medium leading-6 text-gray-700 dark:text-gray-300', for: 'email' do %>Email address<% end %>
+    <div class="mt-2">
+      <%= form.email_field :email, class: 'dark:bg-gray-900 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 dark:border-gray-500 rounded-md dark:text-gray-300', id: 'email', placeholder: 'mail@example.com' %>
     </div>
   </div>
+
+  <div>
+    <%= form.label :password, class: 'block text-sm font-medium leading-6 text-gray-700 dark:text-gray-300', for: 'password' do %>
+      Password
+    <% end %>
+    <div class="mt-2">
+      <%= form.password_field :password, class: 'dark:bg-gray-900 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 dark:border-gray-500 rounded-md dark:text-gray-300', id: 'password' %>
+    </div>
+  </div>
+
+  <div>
+    <%= form.submit "Sign up →", class: 'flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600' %>
+  </div>
 <% end %>
+
+<p class="text-center text-gray-600 dark:text-gray-500 text-xs mt-4">Already have an account? <%= link_to link_to t(".sign_in"), sign_in_path, class: 'underline text-gray-800 dark:text-gray-50', 'up-follow': ''%> instead.</p>
