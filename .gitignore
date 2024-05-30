@@ -50,3 +50,6 @@ coverage/
 /app/assets/builds/*
 !/app/assets/builds/.keep
 vendor/javascript/*.js
+
+# OS
+.DS_Store
