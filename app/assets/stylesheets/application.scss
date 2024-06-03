@@ -121,3 +121,15 @@ a {
   transition-timing-function: cubic-bezier(.4,0,.2,1);
   transition: all .1s ease-in;
 }
+
+@media (prefers-color-scheme: dark) {
+  up-modal-box {
+    background-color: #111827;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  up-modal-box {
+    background-color: #f3f4f6;
+  }
+}
