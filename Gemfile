@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 ruby '3.3.0'
 
+gem 'activeadmin'
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap'
 gem 'bootstrap'

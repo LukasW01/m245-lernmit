@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  root to: 'pages#home'
   default_url_options host: ENV.fetch('HOST', 'localhost:3000')
+
+  ActiveAdmin.routes(self)
+  root to: 'pages#home'
 
   resources :tasks do
     member do
