@@ -179,7 +179,7 @@ GEM
     formtastic (5.0.0)
       actionpack (>= 6.0.0)
     formtastic_i18n (0.7.0)
-    github-markup (4.0.2)
+    github-markup (5.0.1)
     globalid (1.2.1)
       activesupport (>= 6.1)
     has_defaults (1.2.0)
