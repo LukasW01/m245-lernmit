@@ -20,12 +20,6 @@ p {
   margin-bottom: 1.5rem;
 }
 
-//*:focus
-//  outline: 2px solid orange // Make focus very visible to help test A11Y
-//
-//.up-active
-//  outline: 2px solid green !important
-
 .field_with_errors {
   label {
     color: #fbebec;
@@ -100,26 +94,6 @@ a {
 
 .btn.btn-sm {
   min-width: 50px;
-}
-
-
-.button {
-  --tw-bg-opacity: 1;
-  --tw-text-opacity: 1;
-  background-color: rgba(79, 70, 229, 1);
-  border-color: #0000;
-  border-radius: .375rem;
-  border-width: 1px;
-  color: rgba(255, 255, 255, 1);
-  display: inline-flex;
-  font-size: .875rem;
-  font-weight: 500;
-  justify-content: center;
-  line-height: 1.25rem;
-  padding: .5rem 1rem;
-  transition-duration: .15s;
-  transition-timing-function: cubic-bezier(.4,0,.2,1);
-  transition: all .1s ease-in;
 }
 
 @media (prefers-color-scheme: dark) {
