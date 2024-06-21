@@ -12,5 +12,10 @@ Rails.application.routes.draw do
       get 'filter'
     end
   end
-  resources :calender
+  resources :calender, only: [:index] do
+    collection do
+      get :week
+      get :month
+    end
+  end
 end
