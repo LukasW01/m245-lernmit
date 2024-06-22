@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :achievements
   default_url_options host: ENV.fetch('HOST', 'localhost:3000')
 
   ActiveAdmin.routes(self)
@@ -18,4 +19,5 @@ Rails.application.routes.draw do
       get :month
     end
   end
+  resources :achievements
 end

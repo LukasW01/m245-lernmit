@@ -1,0 +1,36 @@
+<h1 class="m-8 text-gray-800 dark:text-white text-3xl font-bold">Achievements</h1>
+<div class="m-8 bg-gray-200 dark:bg-gray-800 p-4 rounded-md">
+  <h1 class="text-gray-800 dark:text-white mb-4 font-bold">Lernen</h1>
+  <div class="grid grid-cols-2 md:grid-cols-6 gap-4 items-center justify-center text-center">
+    <div>
+      <%= image_tag("badge-StudiedWithTest.svg", alt: "StudiedWithTest", :class => 'h-auto max-w-full rounded-lg mx-auto') %>
+      <p class="mt-2 text-black dark:text-white">Studied with Test</p>
+      <p class="text-sm text-gray-500">Earned at: <%= Date.today %></p>
+    </div>
+    <div>
+      <%= image_tag("badge-ReachedEndOfLearn.svg", alt: "ReachedEndOfLearn", :class => 'h-auto max-w-full rounded-lg mx-auto') %>
+      <p class="mt-2 text-black dark:text-white">Reached End of Learn</p>
+      <p class="text-sm text-gray-500">Earned at: <%= Date.today %></p>
+    </div>
+    <div>
+      <%= image_tag("badge-CreatedFirstSet.svg", alt: "NightOwl", :class => 'h-auto max-w-full rounded-lg mx-auto') %>
+      <p class="mt-2 text-black dark:text-white">Created First Set</p>
+      <p class="text-sm text-gray-500">Earned at: <%= Date.today %></p>
+    </div>
+    <div>
+      <%= image_tag("badge-FirstHighscoreInMatch.svg", alt: "NightOwl", :class => 'h-auto max-w-full rounded-lg mx-auto') %>
+      <p class="mt-2 text-black dark:text-white">Overachiever</p>
+      <p class="text-sm text-gray-500">Earned at: <%= Date.today %></p>
+    </div>
+    <div>
+      <%= image_tag("badge-NightOwl.svg", alt: "NightOwl", :class => 'h-auto max-w-full rounded-lg mx-auto') %>
+      <p class="mt-2 text-black dark:text-white">Night Owl</p>
+      <p class="text-sm text-gray-500">Earned at: <%= Date.today %></p>
+    </div>
+    <div>
+      <%= image_tag("badge-EarlyBird.svg", alt: "EarlyBird", :class => 'h-auto max-w-full rounded-lg mx-auto') %>
+      <p class="mt-2 text-black dark:text-white">Lark</p>
+      <p class="text-sm text-gray-500">Earned at: <%= Date.today %></p>
+    </div>
+  </div>
+</div>

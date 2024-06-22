@@ -19,6 +19,7 @@
             <ul class="flex space-x-8">
               <li><%= link_to 'Tasks', tasks_path, class: 'hover:text-sky-500 dark:hover:text-sky-400', 'up-follow': '' %></li>
               <li><%= link_to 'Calendar', calender_index_url, class: 'hover:text-sky-500 dark:hover:text-sky-400', 'up-follow': '' %></li>
+              <li><%= link_to 'Achievements', achievements_url, class: 'hover:text-sky-500 dark:hover:text-sky-400', 'up-follow': '' %></li>
             </ul>
           </nav>
           <div class="flex items-center border-l border-slate-200 ml-6 pl-6 dark:border-slate-800">
@@ -57,7 +58,7 @@
         <ul class="space-y-6">
           <li><%= link_to 'Tasks', tasks_path, class: 'hover:text-sky-500 dark:hover:text-sky-400', 'up-follow': '', 'up-alias' => task_path('*') %></li>
           <li><%= link_to 'Calendar', calender_index_url, class: 'hover:text-sky-500 dark:hover:text-sky-400', 'up-follow': '' %></li>
-        </ul>
+          <li><%= link_to 'Achievements', achievements_url, class: 'hover:text-sky-500 dark:hover:text-sky-400', 'up-follow': '' %></li></ul>
       </div>
     </div>
   </div>

@@ -1,8 +1,9 @@
 <div class="lg:block hidden">
+  <% load_tasks('month') %>
   <%= month_calendar { |date| date } %>
-  <%= render 'calender/events' %>
 </div>
 
 <div class="lg:hidden">
+  <% load_tasks('week') %>
   <%= week_calendar(number_of_weeks: 1) { |date| date } %>
 </div>
