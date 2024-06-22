@@ -1,6 +1,6 @@
 <div class="pb-8">
     <p class="mb-4 text-gray-800 dark:text-white">Tasks</p>
-  <% @load_tasks.each do |task| %>
+  <% @load_tasks.each_with_index do |index, task| %>
     <ol class="divide-y divide-gray-100 overflow-hidden rounded-md bg-white text-sm shadow ring-1 ring-black ring-opacity-5 dark:divide-gray-700 dark:bg-gray-800 dark:ring-opacity-20">
         <li class="group flex p-4 pr-6 focus-within:bg-gray-50 hover:bg-gray-50 dark:focus-within:bg-gray-700 dark:hover:bg-gray-700">
           <div class="flex-auto">
@@ -18,18 +18,4 @@
         </li>
     </ol>
   <% end %>
-    <section class="mt-12">
-      <h2 class="text-base font-semibold leading-6 text-gray-900">Upcoming events</h2>
-      <ol class="mt-2 divide-y divide-gray-200 text-sm leading-6 text-gray-500 dark:text-gray-300 dark:divide-gray-700 dark:bg-gray-800">
-        <li class="py-4 sm:flex rounded-t-lg"> <!-- Added rounded-t-lg here -->
-          <time datetime="2022-01-17" class="pl-4 w-28 flex-none">Wed, Jan 12</time>
-          <p class="mt-2 flex-auto sm:mt-0">Nothing on today’s schedule</p>
-        </li>
-        <li class="py-4 sm:flex rounded-b-lg"> <!-- Added rounded-b-lg here -->
-          <time datetime="2022-01-19" class="w-28 flex-none">Thu, Jan 13</time>
-          <p class="mt-2 flex-auto font-semibold text-gray-900 sm:mt-0">View house with real estate agent</p>
-          <p class="flex-none sm:ml-6"><time datetime="2022-01-13T14:30">2:30 PM</time> - <time datetime="2022-01-13T16:30">4:30 PM</time></p>
-        </li>
-      </ol>
-    </section>
 </div>
