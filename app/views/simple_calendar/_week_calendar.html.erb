@@ -113,7 +113,7 @@
           <% @load_tasks.each do |task| %>
             <% grid_row_start, grid_row_span = event_position(task.due_date) %>
             <ol class="col-start-1 col-end-2 row-start-1 grid grid-cols-1 sm:grid-cols-7 sm:pr-8" style="grid-template-rows: 2rem repeat(300, minmax(0, 1fr)) auto">
-              <li class="relative mt-px flex sm:col-start-<%= task.due_date.wday %>" style="grid-row: <%= grid_row_start %> / span <%= grid_row_span %>">
+              <li class="relative mt-px flex <%= "sm:col-start-#{task.due_date.wday}" if task.due_date.wday < 7 %>" style="grid-row: <%= grid_row_start %> / span <%= grid_row_span %>">
                 <%= link_to task_path(task), class: "group absolute inset-1 flex flex-col overflow-y-auto rounded-lg bg-pink-50 dark:bg-pink-900 p-2 text-xs leading-5 hover:bg-pink-100 dark:hover:bg-pink-800", tabindex: "0", 'up-layer': 'new' do %>
                   <p class="order-1 font-semibold text-pink-700 dark:text-pink-300"><%= task.title %></p>
                   <p class="text-pink-500 group-hover:text-pink-700 dark:text-pink-400 dark:group-hover:text-pink-300">
