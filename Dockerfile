@@ -57,7 +57,7 @@ RUN useradd rails --create-home --shell /bin/bash && \
 USER rails:rails
 
 # Entrypoint prepares the database.
-ENTRYPOINT ["/rails/bin/docker-entrypoint"]
+ENTRYPOINT ["/bin/sh", "-c"]
 
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
