@@ -24,7 +24,7 @@ class CalenderController < ApplicationController
   end
 
   def date_range(view)
-    if view == 'month'
+    if %w[month all].include?(view)
       start_date = params[:start_date].present? ? params[:start_date].to_date.beginning_of_month : Date.today.beginning_of_month
       end_date =  start_date.end_of_month
     elsif view == 'week'
