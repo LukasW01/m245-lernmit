@@ -2,65 +2,6 @@
 
 @import "simple_calendar";
 
-@mixin block-spacing {
-  margin-top: spacer(3);
-  margin-bottom: spacer(3);
-}
-
-body {
-  margin: 5.5rem spacer(4) 7rem spacer(4);
-  overflow-y: scroll;
-}
-
-p {
-  margin-bottom: 0.8rem;
-}
-
-#tab {
-  margin-bottom: 1.5rem;
-}
-
-.field_with_errors {
-  label {
-    color: #fbebec;
-  }
-
-  input,
-  textarea,
-  select {
-    border-color: #fbebec;
-  }
-
-  .input-group & {
-    flex: 1 1 auto; // Use available space when wrapping a .form-control inside an .input-group;
-  }
-
-  &:has(label) {
-    display: inline-block;
-  }
-}
-
-.tasks {
-  flex-wrap: wrap;
-}
-
-
-.navbar-brand {
-  margin-left: 3.25rem;
-}
-
-.fragment-explainer--cell {
-  flex: 0 0 auto;
-
-  a {
-    text-decoration: underline;
-  }
-}
-
-.btn.btn-sm {
-  min-width: 50px;
-}
-
 @media (prefers-color-scheme: dark) {
   up-modal-box {
     background-color: #111827;

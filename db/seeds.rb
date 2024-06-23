@@ -11,12 +11,10 @@
 hash = {
   'badge_CreatedFirstSet' => 'Set builder',
   'badge_EarlyBird' => 'Early bird',
-  'badge_FirstHighscoreInMatch' => 'Match maker',
   'badge_NightOwl' => 'Night Owl',
-  'badge_ReachedEndOfLearn' => 'Committed learner',
+  'badge_Overachiever' => 'Overachiever',
   'badge_StudiedWithFlashcards' => 'Flashcard whiz',
   'badge_StudiedWithLearn' => 'Active learner',
-  'badge_StudiedWithMatch' => 'Match whiz',
   'badge_StudiedWithTest' => 'Test acer'
 }
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 20_240_623_100_415) do
+ActiveRecord::Schema[7.1].define(version: 20_240_623_162_123) do
   create_table 'achievement_users', force: :cascade do |t|
     t.integer 'user_id'
     t.integer 'achievements_id'
@@ -22,6 +22,14 @@ ActiveRecord::Schema[7.1].define(version: 20_240_623_100_415) do
     t.string 'image'
     t.string 'title'
     t.string 'desc'
+  end
+
+  create_table 'groups', force: :cascade do |t|
+    t.string 'name'
+    t.string 'desc'
+    t.integer 'size'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
   create_table 'streaks', force: :cascade do |t|
@@ -41,6 +49,13 @@ ActiveRecord::Schema[7.1].define(version: 20_240_623_100_415) do
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
     t.index ['user_id'], name: 'index_tasks_on_user_id'
+  end
+
+  create_table 'user_groups', force: :cascade do |t|
+    t.integer 'user_id'
+    t.integer 'group_id'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
   create_table 'users', force: :cascade do |t|

@@ -1,4 +1,4 @@
-<div class="lg:flex lg:h-full lg:flex-col px-8 py-8 calendar">
+<div class="lg:flex lg:h-full lg:flex-col calendar">
   <header class="flex items-center justify-between rounded-t-md border-b bg-slate-200 dark:bg-gray-800 border-gray-200 dark:border-gray-700 px-6 py-4 lg:flex-none">
     <h1 class="text-base font-semibold leading-6 dark:text-white flex items-center">
       <time datetime="<%= start_date.strftime('%Y-%m') %>"><%= t('date.month_names')[start_date.month] %> <%= start_date.year %></time>
@@ -30,8 +30,8 @@
           </button>
           <div x-show="open_big" class="absolute right-0 z-10 mt-3 w-36 origin-top-right overflow-hidden rounded-md bg-white dark:bg-gray-800 shadow-lg ring-1 ring-black ring-opacity-5 dark:ring-opacity-25 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
             <div class="py-1" role="none">
-              <%= link_to month_calender_index_path, class: "block px-4 pr-3.5 py-2 text-sm #{current_page?(month_calender_index_path) ? 'bg-gray-100':''}", role: 'menuitem', tabindex: '-1', id: 'menu-item-4', 'up-target': '.container' do %><%= t('simple_calendar.month') %><% end %>
-              <%= link_to week_calender_index_path, class: "block px-4 pr-3.5 py-2 text-sm #{current_page?(week_calender_index_path) ? 'bg-gray-100' : ''}", role: 'menuitem', tabindex: '-1', id: 'menu-item-5', 'up-target': '.container' do %><%= t('simple_calendar.week') %><% end %>
+              <%= link_to month_calender_index_path, class: "block px-4 pr-3.5 py-2 text-sm #{current_page?(month_calender_index_path) ? 'bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100':'text-gray-700 dark:text-gray-300'}", role: 'menuitem', tabindex: '-1', id: 'menu-item-4', 'up-target': '.container' do %><%= t('simple_calendar.month') %><% end %>
+              <%= link_to week_calender_index_path, class: "block px-4 pr-3.5 py-2 text-sm #{current_page?(week_calender_index_path) ? 'bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100' : 'text-gray-700 dark:text-gray-300'}", role: 'menuitem', tabindex: '-1', id: 'menu-item-5', 'up-target': '.container' do %><%= t('simple_calendar.week') %><% end %>
             </div>
           </div>
         </div>
@@ -58,14 +58,14 @@
             <%= link_to t('simple_calendar.today', default: 'Today'), calendar.url_for_today_view, 'up-target': ".calendar", class: "block px-4 py-2 text-sm text-gray-700 dark:text-gray-300", role: 'menuitem', tabindex: '-1', id: 'menu-item-7' %>
           </div>
           <div class="py-1" role="none">
-            <%= link_to month_calender_index_path, class: "block px-4 py-2 text-sm #{current_page?(month_calender_index_path) ? 'bg-gray-100':''}", role: 'menuitem', tabindex: '-1', id: 'menu-item-4', 'up-target': '.container' do %><%= t('simple_calendar.month') %><% end %>
-            <%= link_to week_calender_index_path, class: "block px-4 py-2 text-sm #{current_page?(week_calender_index_path) ? 'bg-gray-100':''}", role: 'menuitem', tabindex: '-1', id: 'menu-item-5', 'up-target': '.container' do %><%= t('simple_calendar.week') %><% end %>
+            <%= link_to month_calender_index_path, class: "block px-4 py-2 text-sm  #{current_page?(month_calender_index_path) ? 'bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100':'text-gray-700 dark:text-gray-300'}", role: 'menuitem', tabindex: '-1', id: 'menu-item-4', 'up-target': '.container' do %><%= t('simple_calendar.month') %><% end %>
+            <%= link_to week_calender_index_path, class: "block px-4 py-2 text-sm #{current_page?(week_calender_index_path) ? 'bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100' : 'text-gray-700 dark:text-gray-300'}", role: 'menuitem', tabindex: '-1', id: 'menu-item-5', 'up-target': '.container' do %><%= t('simple_calendar.week') %><% end %>
           </div>
         </div>
       </div>
     </div>
   </header>
-  <div class="lg:block hidden">
+  <div class="sm:block hidden">
     <div class="shadow ring-1 ring-black ring-opacity-5 dark:ring-opacity-25 lg:flex lg:flex-auto lg:flex-col">
       <div class="grid grid-cols-7 gap-px border-b border-gray-300 dark:border-gray-700 bg-gray-200 dark:bg-gray-800 text-center text-xs font-semibold leading-6 text-gray-700 dark:text-gray-300 lg:flex-none">
         <% date_range.slice(0, 7).each do |day| %>
@@ -74,8 +74,8 @@
           </div>
         <% end %>
       </div>
-      <div class="isolate flex bg-gray-200 dark:bg-gray-800 text-xs leading-6 text-gray-700 dark:text-gray-300 lg:flex-auto">
-        <div class="hidden w-full lg:grid lg:grid-cols-7 lg:grid-rows-4 lg:gap-px">
+      <div class="isolate flex bg-gray-200 dark:bg-gray-800 text-xs leading-6 text-gray-700 dark:text-gray-300 md:flex-auto">
+        <div class="hidden w-full md:grid md:grid-cols-7 md:grid-rows-4 md:gap-px">
           <% date_range.each_slice(7) do |week| %>
             <% week.each do |day| %>
               <div class="<%= day.month == start_date.month ? 'relative tile' : 'relative bg-gray-50 dark:bg-gray-700 text-gray-500 dark:text-gray-400' %> px-3 py-2 h-28">
@@ -99,7 +99,7 @@
       </div>
     </div>
   </div>
-  <div class="lg:hidden">
+  <div class="sm:hidden">
     <div class="isolate grid w-full grid-cols-7 grid-rows-6 gap-px">
       <% date_range.each_slice(7) do |week| %>
         <% week.each do |day| %>
@@ -116,6 +116,5 @@
         <% end %>
       <% end %>
     </div>
-    <%= render 'calender/events' %>
   </div>
 </div>
