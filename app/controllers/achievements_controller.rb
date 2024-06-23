@@ -7,7 +7,7 @@ class AchievementsController < ApplicationController
   private
 
   def achievements_scope
-    AchievementsUser.where(user_id: current_user.id)
+    AchievementUser.where(user_id: current_user.id)
   end
 
   def load_achievements

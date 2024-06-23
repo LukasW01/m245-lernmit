@@ -3,8 +3,7 @@ class CreateAchievements < ActiveRecord::Migration[7.1]
     create_table :achievements do |t|
       t.string :image
       t.string :title
-
-      t.timestamps
+      t.string :desc
     end
   end
 end

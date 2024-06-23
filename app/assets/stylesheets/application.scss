@@ -44,41 +44,6 @@ p {
   flex-wrap: wrap;
 }
 
-.task {
-  flex: 0 0 358px;
-  height: 100px;
-  margin: 0 0 0.5rem 0.5rem;
-
-  &:not(.status) {
-    border-color: gray;
-  }
-  &.status {
-    opacity: 0.5;
-    .card-text {
-      text-decoration: line-through;
-    }
-  }
-}
-
-.task-card {
-  flex: 0 0 358px;
-  height: 450px;
-
-  &:not(.status) {
-    border-color: gray;
-  }
-  &.status {
-    opacity: 0.5;
-    .card-text {
-      text-decoration: line-through;
-    }
-  }
-}
-
-a {
-    color: #007bff;
-    text-decoration: none;
-}
 
 .navbar-brand {
   margin-left: 3.25rem;

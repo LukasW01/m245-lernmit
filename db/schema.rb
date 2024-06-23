@@ -10,19 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 20_240_622_203_243) do
-  create_table 'achievements', force: :cascade do |t|
-    t.string 'image'
-    t.string 'title'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-  end
-
-  create_table 'achievements_users', force: :cascade do |t|
+ActiveRecord::Schema[7.1].define(version: 20_240_623_100_415) do
+  create_table 'achievement_users', force: :cascade do |t|
     t.integer 'user_id'
     t.integer 'achievements_id'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
+  end
+
+  create_table 'achievements', force: :cascade do |t|
+    t.string 'image'
+    t.string 'title'
+    t.string 'desc'
+  end
+
+  create_table 'streaks', force: :cascade do |t|
+    t.integer 'user_id'
+    t.datetime 'created_at'
+    t.string 'types'
   end
 
   create_table 'tasks', force: :cascade do |t|
