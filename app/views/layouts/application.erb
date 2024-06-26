@@ -12,7 +12,7 @@
     <%= favicon_link_tag("logo-lernmit.png") %>
   </head>
 
-  <body class="flex flex-col h-full bg-gray-100 dark:bg-gray-900">
+  <body x-data="{ dropdown: false }" class="flex flex-col h-full bg-gray-100 dark:bg-gray-900">
     <loading-indicator></loading-indicator>
     <%= render 'layouts/nav' %>
     <div up-main>
