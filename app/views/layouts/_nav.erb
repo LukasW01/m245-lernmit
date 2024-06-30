@@ -28,8 +28,8 @@
               </nav>
             <% else %>
               <div class="flex">
-                <%= link_to t(".sign_in"), sign_in_path, class: 'py-2.5 px-5 me-2 text-sm font-medium text-gray-900 font-medium text-gray-500 hover:text-sky-500 dark:hover:text-sky-400 focus:outline-none focus:text-gray-900 transition duration-150 ease-in-out', 'up-follow': ''%>
-                <%= link_to t('.register'), sign_up_path, class: 'py-2.5 px-5 me-2 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:text-sky-500 dark:hover:text-sky-400 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700', 'up-follow': ''%>
+                <%= link_to t("auth.sign_in"), new_user_session_path, class: 'py-2.5 px-5 me-2 text-sm font-medium text-gray-900 font-medium text-gray-500 hover:text-sky-500 dark:hover:text-sky-400 focus:outline-none focus:text-gray-900 transition duration-150 ease-in-out', 'up-follow': ''%>
+                <%= link_to t('auth.register'), new_user_registration_path, class: 'py-2.5 px-5 me-2 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:text-sky-500 dark:hover:text-sky-400 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700', 'up-follow': ''%>
               </div>
             <% end %>
           </div>
@@ -58,9 +58,14 @@
         </svg>
       </button>
       <ul class="space-y-6">
-        <li><%= link_to 'Tasks', tasks_path, class: 'hover:text-sky-500 dark:hover:text-sky-400', 'up-follow': '', 'up-alias' => task_path('*') %></li>
-        <li><%= link_to 'Calendar', calender_index_url, class: 'hover:text-sky-500 dark:hover:text-sky-400', 'up-follow': '' %></li>
-        <li><%= link_to 'Achievements', achievements_url, class: 'hover:text-sky-500 dark:hover:text-sky-400', 'up-follow': '' %></li></ul>
+        <% if signed_in? %>
+          <li><%= link_to 'Tasks', tasks_path, class: 'hover:text-sky-500 dark:hover:text-sky-400', 'up-follow': '', 'up-alias' => task_path('*'), '@click': 'dropdown = !dropdown' %></li>
+          <li><%= link_to 'Calendar', calender_index_url, class: 'hover:text-sky-500 dark:hover:text-sky-400', 'up-follow': '', '@click': 'dropdown = !dropdown'%></li>
+          <li><%= link_to 'Achievements', achievements_url, class: 'hover:text-sky-500 dark:hover:text-sky-400', 'up-follow': '' , '@click': 'dropdown = !dropdown'%></li></ul>
+        <% else %>
+          <li><%= link_to t("auth.sign_in"), new_user_session_path, class: 'hover:text-sky-500 dark:hover:text-sky-400', 'up-follow': '', '@click': 'dropdown = !dropdown'%></li>
+          <li><%= link_to t('auth.register'), new_user_registration_path, class: 'hover:text-sky-500 dark:hover:text-sky-400', 'up-follow': '', '@click': 'dropdown = !dropdown'%></li>
+        <% end %>
     </div>
   </div>
 </div>

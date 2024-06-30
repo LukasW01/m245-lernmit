@@ -10,13 +10,16 @@ Style/FrozenStringLiteralComment:
   Enabled: false
 
 Metrics/AbcSize:
-  Max: 30
+  Max: 35
 
 Metrics/BlockLength:
-  Max: 75
+  Max: 85
 
 Metrics/MethodLength:
   Max: 30
 
 Layout/LineLength:
   Max: 300
+
+Style/GuardClause:
+  Enabled: false

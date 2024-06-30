@@ -1,5 +1,5 @@
 class AchievementsController < ApplicationController
-  before_action :require_login
+  before_action :authenticate_user!
 
   def index
     @user_achievements, @achievements = load_achievements
