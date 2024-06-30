@@ -2,7 +2,7 @@ class CreateUsers < ActiveRecord::Migration[7.1]
   def change
     create_table :users do |t|
       t.timestamps null: false
-      t.string :roles, default: 'user', null: false
+      t.integer :roles, default: 0
       ## Database authenticatable
       t.string :email,              null: false, default: ''
       t.string :encrypted_password, null: false, default: ''

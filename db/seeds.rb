@@ -22,4 +22,4 @@ hash.each do |key, value|
   Achievement.find_or_create_by!(image: key, title: value)
 end
 
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+AdminUser.create!(email: 'admin@example.com', password: 'password1234', password_confirmation: 'password1234') if Rails.env.development?

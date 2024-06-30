@@ -2,23 +2,39 @@ class TasksController < ApplicationController
   before_action :authenticate_user!
 
   def new
-    build_task
+    if can? :create, Task
+      build_task
+    else
+      head :forbidden
+    end
   end
 
   def create
-    build_task
-    save_task(event: 'task:created', form: 'new')
+    if can? :create, Task
+      build_task
+      save_task(event: 'task:created', form: 'new')
+    else
+      head :forbidden
+    end
   end
 
   def edit
-    load_task
-    build_task
+    if can? :update, Task
+      load_task
+      build_task
+    else
+      head :forbidden
+    end
   end
 
   def update
-    load_task
-    build_task
-    save_task(form: 'edit')
+    if can? :update, Task
+      load_task
+      build_task
+      save_task(form: 'edit')
+    else
+      head :forbidden
+    end
   end
 
   def show
@@ -29,13 +45,17 @@ class TasksController < ApplicationController
     load_tasks
   end
 
-  def destroy(event: nil)
-    load_task
-    if @load_task.destroy
-      up.layer.emit(event) if event
-      redirect_to @load_task, notice: 'Task deleted successfully'
+  def destroy
+    if can? :destroy, Task
+      load_task
+      if @load_task.destroy
+        up.layer.emit('task:destroyed')
+        redirect_to tasks_path
+      else
+        redirect_to @load_task, alert: 'Could not delete task'
+      end
     else
-      redirect_to @load_task, alert: 'Could not delete task'
+      head :forbidden
     end
   end
 

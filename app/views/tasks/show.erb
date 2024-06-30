@@ -5,10 +5,12 @@
     </h2>
   </div>
 
-  <div class="col-sm-auto">
-    <%= link_to 'Edit', [:edit, @load_task], class: 'btn btn-primary', 'up-target': '.task' %>
-    <%= link_to 'Delete', @load_task, method: :delete, 'up-follow': '', class: 'btn btn-danger mr-3' %>
-  </div>
+  <% if can? :edit, Task %>
+    <div class="col-sm-auto">
+      <%= link_to 'Edit', [:edit, @load_task], class: 'btn btn-primary', 'up-target': '.task' %>
+      <%= link_to 'Delete', @load_task, method: :delete, 'up-layer': 'parent', class: 'btn btn-danger mr-3' %>
+    </div>
+  <% end %>
 </div>
 
 <dl class="my-8">
