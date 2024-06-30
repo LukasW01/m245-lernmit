@@ -3,10 +3,12 @@ class CalenderController < ApplicationController
 
   def index
     load_tasks
+    load_tasks_limit
   end
 
   def month
     load_tasks('month')
+    load_tasks_limit
   end
 
   def week
@@ -14,6 +16,10 @@ class CalenderController < ApplicationController
   end
 
   private
+
+  def load_tasks_limit
+    @load_tasks_limit ||= Task.where(types: 'Exam', user_id: current_user.id).order(created_at: :desc).limit(10)
+  end
 
   def load_tasks(view = 'month')
     @load_tasks ||= Task.where(due_date: date_range(view), types: 'Exam', user_id: current_user.id).order(created_at: :desc)
