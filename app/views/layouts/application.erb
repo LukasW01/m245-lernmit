@@ -5,8 +5,8 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1'>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.14.0/cdn.min.js" integrity="sha512-4e/5PZ1eoLJMDjaJXTHkWRA0yec8bm07/iINYSd5rdJ38jGm5OZkEi3J+7LqSDWNATNJ4/aneNlrk2AYnnckIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>    <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= javascript_include_tag 'application', defer: true %>
+    <%= javascript_include_tag 'importmap', defer: true, type: "module"%>
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= stylesheet_link_tag "tailwind", media: "all" %>
     <%= favicon_link_tag("logo-lernmit.png") %>

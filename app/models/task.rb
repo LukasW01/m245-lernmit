@@ -6,6 +6,5 @@ class Task < ApplicationRecord
   validates :types, inclusion: { in: %w[Task Exam] }
   validates :due_date, date: { after: proc { Date.today }, message: 'must be in the future' }
 
-  has_rich_text :text
   has_defaults status: 'upcoming'
 end
