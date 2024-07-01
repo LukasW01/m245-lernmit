@@ -40,7 +40,7 @@ group :development, :test do
 end
 
 group :development do
-  gem 'capistrano', '~> 3.10'
+  gem 'capistrano', '~> 3.19'
   gem 'capistrano-opscomplete'
   gem 'capistrano-passenger'
   gem 'capistrano-rails', '~> 1.3'
